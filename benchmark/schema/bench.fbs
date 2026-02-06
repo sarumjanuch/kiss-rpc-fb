@@ -1,0 +1,45 @@
+namespace Benchmark;
+
+enum Method: uint8 {
+    ECHO_SMALL = 0,
+    ECHO_MEDIUM = 1,
+    ECHO_LARGE = 2,
+    VOID_OP = 3,
+    NOTIFY = 4,
+}
+
+// Small payload (~32 bytes)
+table SmallRequest { value: int32; timestamp: int64; }
+table SmallResponse { value: int32; timestamp: int64; }
+
+// Medium payload (~256 bytes)
+table MediumRequest {
+    id: int64;
+    name: string;
+    tags: [string];
+    data: [uint8];
+}
+table MediumResponse {
+    id: int64;
+    name: string;
+    tags: [string];
+    data: [uint8];
+}
+
+// Large payload (~4KB)
+table LargeRequest {
+    payload: [uint8];
+    metadata: string;
+    checksum: int64;
+}
+table LargeResponse {
+    payload: [uint8];
+    metadata: string;
+    checksum: int64;
+}
+
+// Void response - no response body
+table VoidRequest { timestamp: int64; }
+
+// Notification - fire and forget
+table NotifyRequest { event: string; data: [uint8]; }

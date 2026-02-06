@@ -1,0 +1,102 @@
+{
+  "meta": {
+    "date": "2026-02-01T13:46:35.382Z",
+    "node": "v22.21.1",
+    "platform": "linux",
+    "arch": "x64",
+    "title": "baseline1"
+  },
+  "results": {
+    "encode small (32B)": {
+      "name": "encode small (32B)",
+      "ops": 5384000,
+      "totalMs": 1000.1320199999999,
+      "usPerOp": 0.18576003343239225,
+      "opsPerSec": 5383289.298146859
+    },
+    "encode medium (320B)": {
+      "name": "encode medium (320B)",
+      "ops": 421000,
+      "totalMs": 1000.0320220000001,
+      "usPerOp": 2.3753729738717344,
+      "opsPerSec": 420986.5191696831
+    },
+    "encode large (4096B)": {
+      "name": "encode large (4096B)",
+      "ops": 118000,
+      "totalMs": 1004.9888430000001,
+      "usPerOp": 8.516854601694916,
+      "opsPerSec": 117414.23879667885
+    },
+    "decode small (32B)": {
+      "name": "decode small (32B)",
+      "ops": 13433000,
+      "totalMs": 1000.0100979999997,
+      "usPerOp": 0.07444428630983398,
+      "opsPerSec": 13432864.354935747
+    },
+    "decode medium (320B)": {
+      "name": "decode medium (320B)",
+      "ops": 5027000,
+      "totalMs": 1000.1325889999998,
+      "usPerOp": 0.19895217604933355,
+      "opsPerSec": 5026333.563459155
+    },
+    "decode large (4096B)": {
+      "name": "decode large (4096B)",
+      "ops": 6518000,
+      "totalMs": 1000.0278519999993,
+      "usPerOp": 0.1534255679656335,
+      "opsPerSec": 6517818.465720098
+    },
+    "roundtrip small (32B)": {
+      "name": "roundtrip small (32B)",
+      "ops": 128497,
+      "totalMs": 2000.0101919999997,
+      "usPerOp": 15.56464502673214,
+      "opsPerSec": 64248.17259131249
+    },
+    "roundtrip medium (320B)": {
+      "name": "roundtrip medium (320B)",
+      "ops": 64876,
+      "totalMs": 2000.0024150000008,
+      "usPerOp": 30.828078411122767,
+      "opsPerSec": 32437.960831162283
+    },
+    "roundtrip large (4096B)": {
+      "name": "roundtrip large (4096B)",
+      "ops": 10257,
+      "totalMs": 2000.068220000001,
+      "usPerOp": 194.9954392122454,
+      "opsPerSec": 5128.325072831763
+    },
+    "roundtrip void response": {
+      "name": "roundtrip void response",
+      "ops": 155125,
+      "totalMs": 2000.004422,
+      "usPerOp": 12.892856870265915,
+      "opsPerSec": 77562.32850969167
+    },
+    "parallel small x10": {
+      "name": "parallel small x10",
+      "ops": 352350,
+      "totalMs": 2000.005262999999,
+      "usPerOp": 5.676189195402296,
+      "opsPerSec": 176174.53639670755
+    },
+    "parallel small x100": {
+      "name": "parallel small x100",
+      "ops": 520100,
+      "totalMs": 2000.0108529999998,
+      "usPerOp": 3.8454352105364347,
+      "opsPerSec": 260048.58884633268
+    },
+    "notification send": {
+      "name": "notification send",
+      "ops": 457000,
+      "totalMs": 1000.4244409999992,
+      "usPerOp": 2.1891125623632366,
+      "opsPerSec": 456806.11275669583
+    }
+  }
+}

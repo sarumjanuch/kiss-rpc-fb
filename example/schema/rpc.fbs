@@ -1,0 +1,25 @@
+namespace Example;
+
+// Methods
+enum Method: uint8 {
+    ADD = 0,
+    MULTIPLY = 1,
+    GREET = 2,
+    SHUTDOWN = 3,
+    PING = 4,
+}
+
+table AddRequest { a: int32; b: int32; }
+table AddResponse { result: int32; }
+
+table MultiplyRequest { a: int32; b: int32; }
+table MultiplyResponse { result: int32; }
+
+table GreetRequest { name: string; }
+table GreetResponse { message: string; }
+
+table ShutdownRequest { reason: string; }
+table ShutdownResponse { ok: bool; }
+
+// Void response example - PING only has request, no response body
+table PingRequest { timestamp: int64; }

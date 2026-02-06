@@ -1,0 +1,44 @@
+{
+  "name": "kiss-rpc-fb",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "High-performance FlatBuffer-based RPC library for TypeScript with schema-driven type safety and zero-copy deserialization",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/src/index.js",
+      "types": "./dist/src/index.d.ts"
+    }
+  },
+  "files": [
+    "dist/src"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "tsc",
+    "example": "tsx example/src/main.ts",
+    "dev": "tsc && node --enable-source-maps dist/example/src/main.js",
+    "gen:example": "flatc --ts --gen-object-api -o example/src/generated example/schema/rpc.fbs",
+    "gen:bench": "flatc --ts --gen-object-api -o benchmark/src/generated benchmark/schema/bench.fbs",
+    "bench": "tsx benchmark/src/bench-main.ts",
+    "bench:json": "tsx benchmark/src/bench-main.ts --json",
+    "bench:save": "tsx benchmark/src/bench-main.ts --out=benchmark-results.json",
+    "bench:compare": "tsx benchmark/src/compare.ts"
+  },
+  "keywords": ["rpc", "flatbuffers", "binary", "typescript", "zero-copy", "high-performance"],
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "flatbuffers": "^24.12.23"
+  }
+}
