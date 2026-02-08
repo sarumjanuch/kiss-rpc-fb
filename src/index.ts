@@ -341,6 +341,14 @@ export class FbRpc<S extends SchemaDef, AppDataType = void> {
         this.callToTransport(encodeMessage(MessageType.Notification, 0, method, body), appData);
     }
 
+    encodeNotification<M extends keyof S & number>(
+        method: M,
+        req: FBPackable,
+    ): Uint8Array {
+        const body = this.packFB(req);
+        return encodeMessage(MessageType.Notification, 0, method, body);
+    }
+
     fromTransport(data: Uint8Array, appData: AppDataType): void {
         let msg: DecodedMessage;
         try {

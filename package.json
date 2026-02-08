@@ -1,6 +1,6 @@
 {
   "name": "kiss-rpc-fb",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "description": "High-performance FlatBuffer-based RPC library for TypeScript with schema-driven type safety and zero-copy deserialization",
   "main": "dist/src/index.js",
@@ -27,11 +27,15 @@
     "bench:compare": "tsx benchmark/src/compare.ts"
   },
   "keywords": ["rpc", "flatbuffers", "binary", "typescript", "zero-copy", "high-performance"],
-  "author": "",
-  "license": "ISC",
+  "author": "Eugene Voityuk",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sarumjanuch/kiss-rpc-fb/issues"
+  },
+  "homepage": "https://github.com/sarumjanuch/kiss-rpc-fb#readme",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git+https://github.com/sarumjanuch/kiss-rpc-fb.git"
   },
   "devDependencies": {
     "@types/node": "^22.13.1",
