@@ -1,6 +1,6 @@
 {
   "name": "kiss-rpc-fb",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "type": "module",
   "description": "High-performance FlatBuffer-based RPC library for TypeScript with schema-driven type safety and zero-copy deserialization",
   "main": "dist/src/index.js",
