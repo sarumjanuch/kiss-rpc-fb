@@ -54,6 +54,13 @@ type ResOf<S extends SchemaDef, M extends keyof S & number> =
 type HandlerReturn<S extends SchemaDef, M extends keyof S & number> =
     ResOf<S, M> extends void ? void | Promise<void> : FBPackable | Promise<FBPackable>;
 
+/**
+ * When AppDataType is exactly void, appData is not a parameter at all.
+ * The bidirectional check (`void extends T` AND `T extends void`) distinguishes
+ * void from undefined — void extends undefined is false in TypeScript.
+ */
+type AppDataArgs<T> = void extends T ? (T extends void ? [] : [appData: T]) : [appData: T];
+
 export class FbRpcError extends Error {
     code: number;
     message: string;
@@ -313,8 +320,9 @@ export class FbRpc<S extends SchemaDef, AppDataType = void> {
     request<M extends keyof S & number>(
         method: M,
         req: FBPackable,
-        appData: AppDataType
+        ...rest: AppDataArgs<AppDataType>
     ): Promise<ResOf<S, M>> {
+        const appData = rest[0] as AppDataType;
         const id = generateRequestId();
         const body = this.packFB(req);
         const msg = encodeMessage(MessageType.Request, id, method, body);
@@ -335,8 +343,9 @@ export class FbRpc<S extends SchemaDef, AppDataType = void> {
     notify<M extends keyof S & number>(
         method: M,
         req: FBPackable,
-        appData: AppDataType
+        ...rest: AppDataArgs<AppDataType>
     ): void {
+        const appData = rest[0] as AppDataType;
         const body = this.packFB(req);
         this.callToTransport(encodeMessage(MessageType.Notification, 0, method, body), appData);
     }
@@ -349,7 +358,8 @@ export class FbRpc<S extends SchemaDef, AppDataType = void> {
         return encodeMessage(MessageType.Notification, 0, method, body);
     }
 
-    fromTransport(data: Uint8Array, appData: AppDataType): void {
+    fromTransport(data: Uint8Array, ...rest: AppDataArgs<AppDataType>): void {
+        const appData = rest[0] as AppDataType;
         let msg: DecodedMessage;
         try {
             msg = decodeMessage(data);

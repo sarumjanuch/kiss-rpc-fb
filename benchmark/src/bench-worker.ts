@@ -18,7 +18,7 @@ process.stdin.on('data', (chunk: Buffer) => {
         if (buffer.length < 4 + len) break;
         const msg = buffer.subarray(4, 4 + len);
         buffer = buffer.subarray(4 + len);
-        rpc.fromTransport(msg, undefined);
+        rpc.fromTransport(msg);
     }
 });
 

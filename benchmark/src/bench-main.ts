@@ -97,7 +97,7 @@ async function setupIpc(): Promise<void> {
             if (ipcBuffer.length < 4 + len) break;
             const msg = ipcBuffer.subarray(4, 4 + len);
             ipcBuffer = ipcBuffer.subarray(4 + len);
-            rpc.fromTransport(msg, undefined);
+            rpc.fromTransport(msg);
         }
     });
 
@@ -204,7 +204,7 @@ async function runRoundtripBenchmarks(): Promise<BenchResult[]> {
         await bench(
             `roundtrip small (${SMALL_ENCODED.length}B)`,
             async () => {
-                await rpc.request(Method.ECHO_SMALL, SMALL_REQ, undefined);
+                await rpc.request(Method.ECHO_SMALL, SMALL_REQ);
             },
             { warmup: 500, minOps: 5000, minMs: 2000 }
         )
@@ -215,7 +215,7 @@ async function runRoundtripBenchmarks(): Promise<BenchResult[]> {
         await bench(
             `roundtrip medium (${MEDIUM_ENCODED.length}B)`,
             async () => {
-                await rpc.request(Method.ECHO_MEDIUM, MEDIUM_REQ, undefined);
+                await rpc.request(Method.ECHO_MEDIUM, MEDIUM_REQ);
             },
             { warmup: 500, minOps: 5000, minMs: 2000 }
         )
@@ -226,7 +226,7 @@ async function runRoundtripBenchmarks(): Promise<BenchResult[]> {
         await bench(
             `roundtrip large (${LARGE_ENCODED.length}B)`,
             async () => {
-                await rpc.request(Method.ECHO_LARGE, LARGE_REQ, undefined);
+                await rpc.request(Method.ECHO_LARGE, LARGE_REQ);
             },
             { warmup: 500, minOps: 5000, minMs: 2000 }
         )
@@ -237,7 +237,7 @@ async function runRoundtripBenchmarks(): Promise<BenchResult[]> {
         await bench(
             'roundtrip void response',
             async () => {
-                await rpc.request(Method.VOID_OP, VOID_REQ, undefined);
+                await rpc.request(Method.VOID_OP, VOID_REQ);
             },
             { warmup: 500, minOps: 5000, minMs: 2000 }
         )
@@ -260,7 +260,7 @@ async function runParallelBenchmarks(): Promise<BenchResult[]> {
         for (let i = 0; i < warmup; i++) {
             await Promise.all(
                 Array.from({ length: parallelism }, () =>
-                    rpc.request(Method.ECHO_SMALL, SMALL_REQ, undefined)
+                    rpc.request(Method.ECHO_SMALL, SMALL_REQ)
                 )
             );
         }
@@ -272,7 +272,7 @@ async function runParallelBenchmarks(): Promise<BenchResult[]> {
         while (elapsed < minMs) {
             await Promise.all(
                 Array.from({ length: parallelism }, () =>
-                    rpc.request(Method.ECHO_SMALL, SMALL_REQ, undefined)
+                    rpc.request(Method.ECHO_SMALL, SMALL_REQ)
                 )
             );
             ops += parallelism;
@@ -296,7 +296,7 @@ async function runNotificationBenchmarks(): Promise<BenchResult[]> {
     tryGc();
     results.push(
         await benchSync('notification send', () => {
-            rpc.notify(Method.NOTIFY, NOTIFY_REQ, undefined);
+            rpc.notify(Method.NOTIFY, NOTIFY_REQ);
         })
     );
 
